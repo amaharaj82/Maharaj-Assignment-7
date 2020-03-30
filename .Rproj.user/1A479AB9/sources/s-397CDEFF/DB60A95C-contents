@@ -1,0 +1,4 @@
+plot(iris$Petal.Length, iris$Petal.Width,main="Scatterplot of Iris Length by
+Width", xlab="Petal length ", ylab="Petal width ")
+plot(iris$Petal.Length, iris$Petal.Width,main="Scatterplot of Iris Length by
+Width", xlab="Petal length ", ylab="Petal width ")
