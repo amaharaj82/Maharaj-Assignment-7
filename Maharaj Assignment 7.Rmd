@@ -9,6 +9,14 @@ output: html_notebook
 
 ```
 2. Obtain a real dataset with quantitative response and explantory variable (n>=50). Plot these on a scatterplot wiht a regression line. Use your function to help you highlight the 1% largest residuals on the scatterplot.
+
+Here I am using the dataset iris. 
 ```{r}
 data(iris)
 ```
+Here I will plot petal length with petal width.
+```{r}
+plot(iris$Petal.Length, iris$Petal.Width, main="Scatterplot of Iris petal length by width",
+   xlab="Petal length ", ylab="Petal width")
+```
+
