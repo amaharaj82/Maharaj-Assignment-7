@@ -12,12 +12,14 @@ linear.model <- lm(y~x)
 model.residuals <-abs(linear.model$residuals)
 sort.residuals <-sort(model.residuals$residuals, decreasing = TRUE)
 top.ten.percent <- head(sort.residuals$residuals, p)
-ifelse(top.ten.percent == TRUE)
-return(top.ten.percent)
+largest.res <- sort.residuals[p]
+logical <-(model.residuals>=largest.res) 
+return(logical)
+
 }
-  
 ```
-2. Obtain a real dataset with quantitative response and explantory variable (n>=50). Plot these on a scatterplot wiht a regression line. Use your function to help you highlight the 10% largest residuals on the scatterplot.
+
+2. Obtain a real dataset with quantitative response and explantory variable (n>=50). Plot these on a scatterplot with a regression line. Use your function to help you highlight the 10% largest residuals on the scatterplot.
 
 Here I am using the dataset iris which describe the lengths and widths of petals of various species of iris plants. I am looking at whether petal width predicts petal length.
 n = 150
@@ -29,9 +31,18 @@ p=15
 data(iris)
 iris <- data.frame(iris)
 ```
+Linear model
+```{r}
+Top.residuals<-Linear.model.top.residuals(iris$Petal.Length~iris$Petal.Width, 15)
+summary(iris.model)
+```
+
 Here I will plot petal length with petal width.
+
 ```{r}
 plot(iris$Petal.Length, iris$Petal.Width, main="Scatterplot of Iris petal length by width",
-   xlab="Petal width ", ylab="Petal length")
+   xlab="Petal width ", ylab="Petal length", 
+   col =ifelse(Top.residuals ))
+
 ```
 
