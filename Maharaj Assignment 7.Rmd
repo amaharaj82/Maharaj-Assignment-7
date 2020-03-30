@@ -4,11 +4,11 @@ author: Artie Maharaj
 output: html_notebook
 ---
 
-1. Create a function
+1. Create a function that accepts (1) a quantitative response variable, (2) a quantitative explantory variable, and (3)a number. Suppose we denote the repsonse variable as y, the explantory variable as x, and the number as p. Your function should model y as a linear function of x and ten for each(x,y) pair determine if the residual is one of the p largest in the set of residuals, with largest defined in terms iof absolute value (e.g., a residual of -10 is just as large as a residual of 10). The function should return a logical vector indicating TRUE for each pair that has one of the pth largest residuals and FALSE otherwise. 
 ```{r}
 
 ```
 2. Obtain a real dataset with quantitative response and explantory variable (n>=50). Plot these on a scatterplot wiht a regression line. Use your function to help you highlight the 1% largest residuals on the scatterplot.
 ```{r}
-
+data(iris)
 ```
