@@ -6,28 +6,28 @@ output: html_notebook
 
 1. Create a function that accepts (1) a quantitative response variable, (2) a quantitative explantory variable, and (3)a number. Suppose we denote the repsonse variable as y, the explantory variable as x, and the number as p. Your function should model y as a linear function of x and ten for each(x,y) pair determine if the residual is one of the p largest in the set of residuals, with largest defined in terms iof absolute value (e.g., a residual of -10 is just as large as a residual of 10). The function should return a logical vector indicating TRUE for each pair that has one of the pth largest residuals and FALSE otherwise. 
 ```{r}
-iris.model <- function (x, y, p...) {
-
-  response.variable <- c(1:length(response.variable))
+Linear.model.top.residuals <- function (x, y, p...) {
   
-  explanatory.variable <- c(1:length(explantory.variable))
-  return(explanatory.variable)
-  
-  p=15
-  
-  t_test <- function(x,y) {
-  result <- t.test(x, y, paired = TRUE, conf.level = 0.95)
-  return (result)
+linear.model <- lm(y~x)
+model.residuals <-abs(linear.model$residuals)
+sort.residuals <-sort(model.residuals$residuals, decreasing = TRUE)
+top.ten.percent <- head(sort.residuals$residuals, p)
+ifelse(top.ten.percent == TRUE)
+return(top.ten.percent)
 }
   
-  
-}
 ```
-2. Obtain a real dataset with quantitative response and explantory variable (n>=50). Plot these on a scatterplot wiht a regression line. Use your function to help you highlight the 1% largest residuals on the scatterplot.
+2. Obtain a real dataset with quantitative response and explantory variable (n>=50). Plot these on a scatterplot wiht a regression line. Use your function to help you highlight the 10% largest residuals on the scatterplot.
 
-Here I am using the dataset iris. 
+Here I am using the dataset iris which describe the lengths and widths of petals of various species of iris plants. I am looking at whether petal width predicts petal length.
+n = 150
+x = petal width
+y= petal length
+p=15
+
 ```{r}
 data(iris)
+iris <- data.frame(iris)
 ```
 Here I will plot petal length with petal width.
 ```{r}
