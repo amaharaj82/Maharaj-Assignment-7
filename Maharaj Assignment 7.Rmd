@@ -11,11 +11,9 @@ Linear.model.top.residuals <- function (x, y, p...) {
 linear.model <- lm(y~x)
 model.residuals <-abs(linear.model$residuals)
 sort.residuals <-sort(model.residuals$residuals, decreasing = TRUE)
-top.ten.percent <- head(sort.residuals$residuals, p)
 largest.res <- sort.residuals[p]
 logical <-(model.residuals>=largest.res) 
 return(logical)
-
 }
 ```
 
@@ -28,19 +26,19 @@ y= petal length
 p=15
 
 ```{r}
-data(iris)
-iris <- data.frame(iris)
-```
-Linear model
-```{r}
-Top.residuals<-Linear.model.top.residuals(iris$Petal.Length~iris$Petal.Width, 15)
-summary(iris.model)
+iris2 <- read.csv("iris.csv")
 ```
 
-Here I will plot petal length with petal width.
+Largest Residuals for Plot
+```{r}
+Top.residuals<-Linear.model.top.residuals(iris2$Petal.Length~iris2$Petal.Width, 15)
+summary(Top.residuals)
+```
+
+Here I will plot petallength with petal width.
 
 ```{r}
-plot(iris$Petal.Length, iris$Petal.Width, main="Scatterplot of Iris petal length by width",
+plot(iris$Petal.Length, iris2$Petal.Width, main="Scatterplot of Iris petal length by width",
    xlab="Petal width ", ylab="Petal length", 
    col =ifelse(Top.residuals ))
 
