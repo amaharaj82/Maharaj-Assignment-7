@@ -1,0 +1,14 @@
+---
+title: "Assignment 7"
+author: Artie Maharaj
+output: html_notebook
+---
+
+1. Create a function
+```{r}
+
+```
+2. Obtain a real dataset with quantitative response and explantory variable (n>=50). Plot these on a scatterplot wiht a regression line. Use your function to help you highlight the 1% largest residuals on the scatterplot.
+```{r}
+
+```
