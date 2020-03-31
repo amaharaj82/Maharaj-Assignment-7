@@ -26,21 +26,26 @@ y= petal length
 p=15
 
 ```{r}
-iris2 <- read.csv("iris.csv")
+data("iris")
+class(iris)
 ```
 
 Largest Residuals for Plot
 ```{r}
-Top.residuals<-Linear.model.top.residuals(iris2$Petal.Length~iris2$Petal.Width, 15)
+top.residuals<-Linear.model.top.residuals(iris$Petal.Length~iris$Petal.Width, 15)
 summary(Top.residuals)
 ```
 
-Here I will plot petallength with petal width.
+Here I will plot petal length with petal width.
 
 ```{r}
-plot(iris$Petal.Length, iris2$Petal.Width, main="Scatterplot of Iris petal length by width",
+plot(iris$Petal.Length, iris$Petal.Width, main="Scatterplot of Iris petal length by width",
    xlab="Petal width ", ylab="Petal length", 
-   col =ifelse(Top.residuals ))
-
+   col =ifelse(top.residuals== TRUE, "orange", "black" ))
+    abline(lm(Petal.Length~Petal.Width, data=iris), col="green")
 ```
-
+Check basic scatterplot of petal length by petal width.
+```{r}
+plot(iris$Petal.Length, iris$Petal.Width, main="Scatterplot of Iris petal length by width",
+   xlab="Petal width ", ylab="Petal length")
+```
