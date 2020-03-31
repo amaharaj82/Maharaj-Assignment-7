@@ -1,6 +1,5 @@
 ---
-title: "Assignment 7"
-author: Artie Maharaj
+title: "Artie Maharaj Assignment 7"
 output: html_notebook
 ---
 
@@ -36,7 +35,7 @@ top.residuals<-Linear.model.top.residuals(iris$Petal.Length~iris$Petal.Width, 15
 summary(Top.residuals)
 ```
 
-Here I will plot petal length with petal width.
+Below is the plot petal length with petal width.
 
 ```{r}
 plot(iris$Petal.Length, iris$Petal.Width, main="Scatterplot of Iris petal length by width",
