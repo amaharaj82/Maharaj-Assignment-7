@@ -1,0 +1,58 @@
+---
+title: "Artie Maharaj Assignment 7"
+output: html_notebook
+---
+
+The function doesn't work, thus the plot doesn't work. (-20)
+
+1. Create a function that accepts (1) a quantitative response variable, (2) a quantitative explantory variable, and (3)a number. Suppose we denote the repsonse variable as y, the explantory variable as x, and the number as p. Your function should model y as a linear function of x and ten for each(x,y) pair determine if the residual is one of the p largest in the set of residuals, with largest defined in terms iof absolute value (e.g., a residual of -10 is just as large as a residual of 10). The function should return a logical vector indicating TRUE for each pair that has one of the pth largest residuals and FALSE otherwise.
+
+*Two errors here. You need a comma after the p in the arguments list. Also, model.residuals is an atomic vector, but when creating sort.residuals*
+*you treated it like a data frame. You should just have model.residuals on that line.*
+
+```{r}
+Linear.model.top.residuals <- function (x, y, p...) {
+  
+linear.model <- lm(y~x)
+model.residuals <-abs(linear.model$residuals)
+sort.residuals <-sort(model.residuals$residuals, decreasing = TRUE)
+largest.res <- sort.residuals[p]
+logical <-(model.residuals>=largest.res) 
+return(logical)
+}
+```
+
+2. Obtain a real dataset with quantitative response and explantory variable (n>=50). Plot these on a scatterplot with a regression line. Use your function to help you highlight the 10% largest residuals on the scatterplot.
+
+Here I am using the dataset iris which describe the lengths and widths of petals of various species of iris plants. I am looking at whether petal width predicts petal length.
+n = 150
+x = petal width
+y= petal length
+p=15
+
+```{r}
+data("iris")
+class(iris)
+```
+
+Largest Residuals for Plot
+
+*Two problems here. You need to send three arguments, separated by commas, not a tilde. Also, in your summary you capitalized the "T".*
+```{r}
+top.residuals<-Linear.model.top.residuals(iris$Petal.Length~iris$Petal.Width, 15)
+summary(Top.residuals)
+```
+
+Below is the plot petal length with petal width.
+
+```{r}
+plot(iris$Petal.Length, iris$Petal.Width, main="Scatterplot of Iris petal length by width",
+   xlab="Petal width ", ylab="Petal length", 
+   col =ifelse(top.residuals== TRUE, "orange", "black" ))
+    abline(lm(Petal.Length~Petal.Width, data=iris), col="green")
+```
+Check basic scatterplot of petal length by petal width.
+```{r}
+plot(iris$Petal.Length, iris$Petal.Width, main="Scatterplot of Iris petal length by width",
+   xlab="Petal width ", ylab="Petal length")
+```
